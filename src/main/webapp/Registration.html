@@ -1,0 +1,156 @@
+<html><head><base href="https://emptracker.example.com/can%20you%20give%20pop%20up%20message%20when%20employ%20successfully%20lregistered"><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Registration - Time Tracker</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+    .container {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+    }
+    h1 {
+        color: #1a3e72;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+    label {
+        margin-top: 10px;
+        font-weight: bold;
+        color: #333;
+    }
+    input, select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+    input[type="submit"] {
+        background-color: #1a73e8;
+        color: white;
+        border: none;
+        padding: 12px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    input[type="submit"]:hover {
+        background-color: #155fb3;
+    }
+    .popup {
+        display: none;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #4CAF50;
+        color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Employee Registration</h1>
+        <form id="registrationForm" action="Admin" method="POST">
+            <label for="employeeId">Employee ID:</label>
+            <input type="text" id="employeeId" name="employeeId" required>
+
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required minlength="8">
+
+            <label for="role">Role:</label>
+            <select id="role" name="role" required>
+                <option value="">Select a role</option>
+                <option value="employee">Employee</option>
+                <option value="manager">Manager</option>
+                <option value="admin">Admin</option>
+            </select>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="dateOfBirth">Date of Birth:</label>
+            <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+
+            <label for="mobileNumber">Mobile Number:</label>
+            <input type="tel" id="mobileNumber" name="mobileNumber" required pattern="[0-9]{10}">
+
+            <input type="submit" value="Register">
+        </form>
+    </div>
+
+    <div id="successPopup" class="popup">
+        Registration Successful!<br>
+        Welcome to the Employee Time Tracker.
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            var employeeId = document.getElementById('employeeId').value;
+            var password = document.getElementById('password').value;
+            var email = document.getElementById('email').value;
+            var mobileNumber = document.getElementById('mobileNumber').value;
+
+            // Basic validation
+            if (!/^[A-Za-z0-9]{5,}$/.test(employeeId)) {
+                alert('Employee ID must be at least 5 alphanumeric characters.');
+                return;
+            }
+
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters long.');
+                return;
+            }
+
+            if (!/\S+@\S+\.\S+/.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            if (!/^\d{10}$/.test(mobileNumber)) {
+                alert('Mobile number must be 10 digits.');
+                return;
+            }
+
+            setTimeout(function() {
+                var popup = document.getElementById('successPopup');
+                popup.style.display = 'block';
+                
+                setTimeout(function() {
+                    popup.style.display = 'none';
+                    window.location.href = 'login.html';
+                }, 3000);
+            }, 1000); 
+        });
+    </script>
+</body>
+</html>

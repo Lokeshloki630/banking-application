@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create_Account</title>
+
+<style>
+    
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f3f4f6, #dbe3e8);
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+header {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.field {
+    margin-bottom: 15px;
+}
+
+.input-field {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.input, .password {
+    width: 90%;
+    padding: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.input:focus, .password:focus {
+    outline: none;
+    border-color: #6e8efb;
+    box-shadow: 0 0 0 2px rgba(110, 125, 255, 0.5);
+}
+
+.error {
+    display: block;
+    color: #e74c3c;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.button-field {
+    text-align: center;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #6e8efb, #4b89e0);
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background: linear-gradient(135deg, #4b89e0, #6e8efb);
+    transform: translateY(-3px);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    header {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .input, .password {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    header {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .input, .password {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .error {
+        font-size: 12px;
+    }
+}
+    
+    
+</style>
+
+
+</head>
+<body>
+	<form id="createAccountForm" action="Create_Account" method="post">
+		<section class="container forms">
+			<div class="form login">
+				<div class="form-content">
+					<header>Reset Password</header>
+
+					<div class="field input-field">
+						<input type="text" name="username" id="username"
+							placeholder="Full Name" class="input"> <span
+							id="usernameError" class="error"></span>
+					</div>
+					<div class="field input-field">
+						<input type="text" name="email" id="email" placeholder="Email"
+							class="input"> <span id="emailError" class="error"></span>
+					</div>
+					<div class="field input-field">
+						<input type="password" name="password" id="password"
+							placeholder="New Password" class="password"> <span
+							id="passwordError" class="error"></span>
+					</div>
+
+					<div class="field button-field">
+						<button type="submit" id="submitButton">Change Password</button>
+					</div>
+				</div>
+			</div>
+		</section>
+	</form>
+
+	<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('createAccountForm');
+
+            const usernameInput = document.getElementById('username');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+
+            const usernameError = document.getElementById('usernameError');
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+
+            const submitButton = document.getElementById('submitButton');
+
+            function isValidEmail(email) {
+                return /\S+@\S+\.\S+/.test(email);
+            }
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                usernameError.textContent = '';
+                emailError.textContent = '';
+                passwordError.textContent = '';
+
+                
+                if (!usernameInput.value.trim()) {
+                    usernameError.textContent = 'Please enter your full name';
+                    return;
+                }
+
+                
+                if (!emailInput.value.trim()) {
+                    emailError.textContent = 'Please enter your email';
+                    emailError.style.color = 'red'; // Set error message color to red
+                    return;
+                } else if (!isValidEmail(emailInput.value.trim())) {
+                    emailError.textContent = 'Please enter a valid email address';
+                    emailError.style.color = 'red'; // Set error message color to red
+                    return;
+                }
+
+              
+ 
+
+if (!passwordInput.value.trim()) {
+    passwordError.textContent = 'Please enter a new password';
+    return;
+} else if (passwordInput.value.trim().length < 8) {
+    passwordError.textContent = 'Password must be at least 8 characters long';
+    return;
+} else if (!/\d/.test(passwordInput.value) || !/[a-zA-Z]/.test(passwordInput.value) || !/[^a-zA-Z0-9]/.test(passwordInput.value)) {
+    passwordError.textContent = 'Password must contain at least one letter, one number, and one symbol';
+    return;
+}
+
+                
+                form.submit();
+            });
+        });
+    </script>
+</body>
+</html>
