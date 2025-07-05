@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Modify extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    private static final String UPDATE_QUERY = "UPDATE admin_dashboard SET full_name = ?, address = ?, mobile_no = ?, email = ?, account_type = ?, balance = ?, dob = ? WHERE mobile_no = ?";
+    private static final String UPDATE_QUERY = "UPDATE admin_dashboard SET full_name = ?, address = ?, mobile_no = ?, email = ?, account_type = ?, dob = ? WHERE mobile_no = ?";
     
     public Modify() {
         super();
@@ -28,7 +28,7 @@ public class Modify extends HttpServlet {
         String fullName = request.getParameter("fullName");
         String email = request.getParameter("email");
         String accountType = request.getParameter("accountType");
-        double balance = Double.parseDouble(request.getParameter("balance"));
+//        double balance = Double.parseDouble(request.getParameter("balance"));
         String dob = request.getParameter("dob");
 
         try {
@@ -44,10 +44,9 @@ public class Modify extends HttpServlet {
             ps.setString(3, mobileNo);
             ps.setString(4, email);
             ps.setString(5, accountType);
-            ps.setDouble(6, balance);
-            ps.setString(7, dob);
-            ps.setString(8, mobileNo); // Match by mobile number instead of name
-
+//            ps.setDouble(6, balance);
+            ps.setString(6, dob);
+            ps.setString(7, mobileNo); 
             int count = ps.executeUpdate();
 
             if (count > 0) {

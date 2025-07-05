@@ -156,10 +156,7 @@
                 <option value="Current">Current</option>
             </select>
         </div>
-        <div class="form-group">
-            <label for="balance"><i class="fas fa-money-bill icon"></i>Balance</label>
-            <input type="number" id="balance" name="balance" required>
-        </div>
+        
         <div class="form-group">
             <label for="dob"><i class="fas fa-calendar-alt icon"></i>Date of Birth</label>
             <input type="date" id="dob" name="dob" required>
@@ -185,7 +182,6 @@
                 var mobileNo = document.getElementById("mobileNo").value;
                 var email = document.getElementById("email").value;
                 var accountType = document.getElementById("accountType").value;
-                var balance = document.getElementById("balance").value;
                 var dob = document.getElementById("dob").value;
 
                 var error = "";
@@ -205,9 +201,7 @@
                 if (!accountType.trim()) {
                     error += "Account Type is required.\n";
                 }
-                if (balance.trim() === "" || balance < 1000) {
-                    error += "Balance should be at least 1000.\n";
-                }
+                
                 if (!dob.trim()) {
                     error += "Date of Birth is required.\n";
                 }

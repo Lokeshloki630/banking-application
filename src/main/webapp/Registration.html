@@ -1,156 +1,300 @@
-<html><head><base href="https://emptracker.example.com/can%20you%20give%20pop%20up%20message%20when%20employ%20successfully%20lregistered"><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Employee Registration - Time Tracker</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f0f2f5;
-        margin: 0;
-        padding: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <style>
+       @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #6e8efb, #4b89e0);
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    max-width: 600px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.5s ease-out;
+}
+
+h2 {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+label {
+    flex: 0 0 30%;
+    color: #fff;
+    font-weight: 500;
+    margin-right: 10px;
+    text-align: left;
+}
+
+input[type="text"], 
+input[type="email"], 
+input[type="number"], 
+input[type="date"],
+select {
+    flex: 0 0 60%;
+    width: 60%;
+    padding: 10px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    font-size: 16px;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus, 
+input[type="email"]:focus, 
+input[type="number"]:focus, 
+input[type="date"]:focus,
+select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+select {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+select:focus {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+select option {
+    background-color: #6e8efb;
+    color: #fff;
+}
+
+select option:checked,
+select option:hover {
+    background-color: #6e8efb;
+    color: #fff;
+}
+
+input[type="submit"] {
+    width: 100%;
+    background: linear-gradient(135deg, #6e8efb, #4b89e0);
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid #fff;
+}
+
+input[type="submit"]:hover {
+    background-color: black;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@media (max-width: 600px) {
     .container {
-        background-color: #ffffff;
-        padding: 30px;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        width: 100%;
-        max-width: 400px;
-    }
-    h1 {
-        color: #1a3e72;
-        text-align: center;
-        margin-bottom: 25px;
-    }
-    form {
-        display: flex;
-        flex-direction: column;
-    }
-    label {
-        margin-top: 10px;
-        font-weight: bold;
-        color: #333;
-    }
-    input, select {
-        width: 100%;
-        padding: 10px;
-        margin-top: 5px;
-        margin-bottom: 15px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-        font-size: 16px;
-    }
-    input[type="submit"] {
-        background-color: #1a73e8;
-        color: white;
-        border: none;
-        padding: 12px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-    input[type="submit"]:hover {
-        background-color: #155fb3;
-    }
-    .popup {
-        display: none;
-        position: fixed;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #4CAF50;
-        color: white;
         padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        z-index: 1000;
-        text-align: center;
     }
-</style>
+
+    .form-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    label {
+        flex: 1 0 100%;
+        text-align: left;
+        margin-bottom: 5px;
+        margin-right: 0;
+    }
+
+    input[type="text"], 
+    input[type="email"], 
+    input[type="number"], 
+    input[type="date"],
+    select {
+        flex: 1 0 100%;
+        width: 100%;
+    }
+}
+
+/* Fix for select and input[type="date"] appearance */
+select,
+input[type="date"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+       
+    </style>
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Creation</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Employee Registration</h1>
-        <form id="registrationForm" action="Admin" method="POST">
-            <label for="employeeId">Employee ID:</label>
-            <input type="text" id="employeeId" name="employeeId" required>
-
-            <label for="name">Full Name:</label>
-            <input type="text" id="name" name="name" required>
-
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required minlength="8">
-
-            <label for="role">Role:</label>
-            <select id="role" name="role" required>
-                <option value="">Select a role</option>
-                <option value="employee">Employee</option>
-                <option value="manager">Manager</option>
-                <option value="admin">Admin</option>
-            </select>
-
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="dateOfBirth">Date of Birth:</label>
-            <input type="date" id="dateOfBirth" name="dateOfBirth" required>
-
-            <label for="mobileNumber">Mobile Number:</label>
-            <input type="tel" id="mobileNumber" name="mobileNumber" required pattern="[0-9]{10}">
-
+        <h2>Account Creation</h2>
+        <hr><br>
+        <form id="registrationForm" action="Admin" method="get" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="full_name" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" required>
+            </div>
+            <div class="form-group">
+                <label for="mobileNo">Mobile Number</label>
+                <input type="text" id="mobileNo" name="mobile_no" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="accountType">Account Type</label>
+                <select id="accountType" name="account_type" required>
+                    <option value="" disabled selected>Select Account Type</option>
+                    <option value="Saving">Saving</option>
+                    <option value="Current">Current</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="balance">Balance</label>
+                <input type="number" id="balance" name="balance" required>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+            <div class="form-group">
+                <label for="idProof">ID Proof</label>
+                <select id="idProof" name="id_proff" required>
+                    <option value="Aadhar">Aadhar Number</option>
+                    <option value="PAN">PAN Number</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="idProofNumber">ID Proof Number</label>
+                <input type="text" id="idProofNumber" name="id_proff_number" required>
+            </div>
             <input type="submit" value="Register">
         </form>
     </div>
-
-    <div id="successPopup" class="popup">
-        Registration Successful!<br>
-        Welcome to the Employee Time Tracker.
-    </div>
-
     <script>
-        document.getElementById('registrationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            var employeeId = document.getElementById('employeeId').value;
-            var password = document.getElementById('password').value;
-            var email = document.getElementById('email').value;
-            var mobileNumber = document.getElementById('mobileNumber').value;
+        // Function to validate the form data
+        function validateForm() {
+            // Get form values
+            var fullName = document.getElementById("fullName").value.trim();
+            var address = document.getElementById("address").value.trim();
+            var mobileNo = document.getElementById("mobileNo").value.trim();
+            var email = document.getElementById("email").value.trim();
+            var accountType = document.getElementById("accountType").value.trim();
+            var balance = document.getElementById("balance").value.trim();
+            var dob = document.getElementById("dob").value.trim();
+            var idProof = document.getElementById("idProof").value.trim();
+            var idProofNumber = document.getElementById("idProofNumber").value.trim();
 
-            // Basic validation
-            if (!/^[A-Za-z0-9]{5,}$/.test(employeeId)) {
-                alert('Employee ID must be at least 5 alphanumeric characters.');
-                return;
+            // Initialize error message
+            var error = "";
+
+            // Validation checks
+            if (!fullName) {
+                error += "Full Name is required.\n";
+            }
+            if (!address) {
+                error += "Address is required.\n";
+            }
+            if (!mobileNo || mobileNo.length !== 10 || isNaN(mobileNo)) {
+                error += "Mobile Number must be 10 digits.\n";
+            }
+            if (!email || !validateEmail(email)) {
+                error += "Valid Email is required.\n";
+            }
+            if (!accountType) {
+                error += "Account Type is required.\n";
+            }
+            if (balance === "" || balance < 1000) {
+                error += "Balance should be at least 1000.\n";
+            }
+            if (!dob) {
+                error += "Date of Birth is required.\n";
             }
 
-            if (password.length < 8) {
-                alert('Password must be at least 8 characters long.');
-                return;
+            // Additional validation for ID Proof
+            if (idProof === "Aadhar") {
+                if (idProofNumber.length !== 12 || isNaN(idProofNumber)) {
+                    error += "Aadhar Number must be 12 digits.\n";
+                }
+            } else if (idProof === "PAN") {
+                var panRegex = /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/;
+                if (!panRegex.test(idProofNumber)) {
+                    error += "Invalid PAN Number format.\n";
+                }
             }
 
-            if (!/\S+@\S+\.\S+/.test(email)) {
-                alert('Please enter a valid email address.');
-                return;
+            // Show error message if any errors are found
+            if (error) {
+                alert(error);
+                return false; // Prevent form submission
             }
 
-            if (!/^\d{10}$/.test(mobileNumber)) {
-                alert('Mobile number must be 10 digits.');
-                return;
-            }
+            return true; 
+        }
 
-            setTimeout(function() {
-                var popup = document.getElementById('successPopup');
-                popup.style.display = 'block';
-                
-                setTimeout(function() {
-                    popup.style.display = 'none';
-                    window.location.href = 'login.html';
-                }, 3000);
-            }, 1000); 
-        });
+        // Function to validate email format
+        function validateEmail(email) {
+            var re = /\S+@\S+\.\S+/;
+            return re.test(email);
+        }
     </script>
 </body>
 </html>
